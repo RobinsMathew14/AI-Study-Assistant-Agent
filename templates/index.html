@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Study Assistant - Your Personal Learning Companion</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <h1>AI Study Assistant</h1>
+            </div>
+            <nav class="nav">
+                <a href="#chat">Chat</a>
+                <a href="#study-plan">Study Plan</a>
+                <a href="#quiz">Quiz</a>
+                <a href="#explain">Explain</a>
+                <a href="#code-review">Code Review</a>
+                <a href="#resources">Resources</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Your Personal AI-Powered Learning Companion</h2>
+            <p>Master Computer Science with intelligent tutoring, personalized study plans, and instant feedback</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            
+            <!-- Chat Interface -->
+            <section id="chat" class="feature-section">
+                <div class="section-header">
+                    <i class="fas fa-comments"></i>
+                    <h2>AI Chat Assistant</h2>
+                    <p>Ask questions and get instant, intelligent responses</p>
+                </div>
+                <div class="chat-container">
+                    <div id="chatMessages" class="chat-messages"></div>
+                    <div class="chat-input-container">
+                        <input type="text" id="chatInput" placeholder="Ask me anything about CS topics..." />
+                        <button onclick="sendChat()" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Send
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Study Plan Generator -->
+            <section id="study-plan" class="feature-section">
+                <div class="section-header">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h2>Study Plan Generator</h2>
+                    <p>Create a personalized study schedule based on your goals</p>
+                </div>
+                <div class="form-container">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="studyTopic">Topic/Subject</label>
+                            <input type="text" id="studyTopic" placeholder="e.g., Data Structures" />
+                        </div>
+                        <div class="form-group">
+                            <label for="studyDuration">Duration (days)</label>
+                            <input type="number" id="studyDuration" value="7" min="1" max="90" />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="studyHours">Daily Hours</label>
+                            <input type="number" id="studyHours" value="2" min="1" max="12" step="0.5" />
+                        </div>
+                        <div class="form-group">
+                            <label for="currentLevel">Current Level</label>
+                            <select id="currentLevel">
+                                <option value="beginner">Beginner</option>
+                                <option value="intermediate" selected>Intermediate</option>
+                                <option value="advanced">Advanced</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button onclick="generateStudyPlan()" class="btn btn-primary btn-full">
+                        <i class="fas fa-magic"></i> Generate Study Plan
+                    </button>
+                </div>
+                <div id="studyPlanResult" class="result-container"></div>
+            </section>
+
+            <!-- Quiz Generator -->
+            <section id="quiz" class="feature-section">
+                <div class="section-header">
+                    <i class="fas fa-question-circle"></i>
+                    <h2>Interactive Quiz Generator</h2>
+                    <p>Test your knowledge with AI-generated quizzes</p>
+                </div>
+                <div class="form-container">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="quizTopic">Topic</label>
+                            <input type="text" id="quizTopic" placeholder="e.g., Operating Systems" />
+                        </div>
+                        <div class="form-group">
+                            <label for="numQuestions">Number of Questions</label>
+                            <input type="number" id="numQuestions" value="5" min="1" max="20" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="quizDifficulty">Difficulty Level</label>
+                        <select id="quizDifficulty">
+                            <option value="easy">Easy</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="hard">Hard</option>
+                        </select>
+                    </div>
+                    <button onclick="generateQuiz()" class="btn btn-primary btn-full">
+                        <i class="fas fa-clipboard-list"></i> Generate Quiz
+                    </button>
+                </div>
+                <div id="quizResult" class="result-container"></div>
+            </section>
+
+            <!-- Concept Explainer -->
+            <section id="explain" class="feature-section">
+                <div class="section-header">
+                    <i class="fas fa-lightbulb"></i>
+                    <h2>Concept Explainer</h2>
+                    <p>Get clear explanations tailored to your level</p>
+                </div>
+                <div class="form-container">
+                    <div class="form-group">
+                        <label for="explainConcept">Concept/Topic</label>
+                        <input type="text" id="explainConcept" placeholder="e.g., Binary Search Trees" />
+                    </div>
+                    <div class="form-group">
+                        <label for="explainLevel">Explanation Level</label>
+                        <select id="explainLevel">
+                            <option value="beginner">Beginner (ELI5)</option>
+                            <option value="intermediate" selected>Intermediate</option>
+                            <option value="advanced">Advanced (Technical)</option>
+                            <option value="expert">Expert (Research)</option>
+                        </select>
+                    </div>
+                    <button onclick="explainConcept()" class="btn btn-primary btn-full">
+                        <i class="fas fa-book-open"></i> Explain Concept
+                    </button>
+                </div>
+                <div id="explainResult" class="result-container"></div>
+            </section>
+
+            <!-- Code Review -->
+            <section id="code-review" class="feature-section">
+                <div class="section-header">
+                    <i class="fas fa-code"></i>
+                    <h2>Code Review Assistant</h2>
+                    <p>Get instant feedback on your code</p>
+                </div>
+                <div class="form-container">
+                    <div class="form-group">
+                        <label for="codeLanguage">Programming Language</label>
+                        <select id="codeLanguage">
+                            <option value="python" selected>Python</option>
+                            <option value="javascript">JavaScript</option>
+                            <option value="java">Java</option>
+                            <option value="cpp">C++</option>
+                            <option value="c">C</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="codeInput">Your Code</label>
+                        <textarea id="codeInput" rows="10" placeholder="Paste your code here..."></textarea>
+                    </div>
+                    <button onclick="reviewCode()" class="btn btn-primary btn-full">
+                        <i class="fas fa-search"></i> Review Code
+                    </button>
+                </div>
+                <div id="codeReviewResult" class="result-container"></div>
+            </section>
+
+            <!-- Resource Finder -->
+            <section id="resources" class="feature-section">
+                <div class="section-header">
+                    <i class="fas fa-book"></i>
+                    <h2>Learning Resources</h2>
+                    <p>Discover curated learning materials</p>
+                </div>
+                <div class="form-container">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="resourceTopic">Topic</label>
+                            <input type="text" id="resourceTopic" placeholder="e.g., Machine Learning" />
+                        </div>
+                        <div class="form-group">
+                            <label for="resourceType">Resource Type</label>
+                            <select id="resourceType">
+                                <option value="all" selected>All Types</option>
+                                <option value="articles">Articles</option>
+                                <option value="videos">Videos</option>
+                                <option value="courses">Courses</option>
+                                <option value="books">Books</option>
+                                <option value="practice">Practice Problems</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button onclick="findResources()" class="btn btn-primary btn-full">
+                        <i class="fas fa-search"></i> Find Resources
+                    </button>
+                </div>
+                <div id="resourcesResult" class="result-container"></div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 AI Study Assistant | Powered by Google Gemini 2.5 Pro</p>
+            <p>Built for the Agents Intensive Capstone Project</p>
+        </div>
+    </footer>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="spinner"></div>
+        <p>Processing...</p>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
