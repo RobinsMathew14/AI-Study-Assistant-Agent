@@ -1,0 +1,21 @@
+# Core Dependencies
+google-generativeai>=0.7.0
+google-adk>=1.0.0
+
+# Environment & Configuration
+python-dotenv>=1.0.0
+
+# CLI & UI
+rich>=13.0.0
+colorama>=0.4.6
+
+# Utilities
+requests>=2.31.0
+pydantic>=2.5.0
+
+# Development Dependencies (optional)
+pytest>=7.4.0
+pytest-cov>=4.1.0
+black>=23.12.0
+flake8>=6.1.0
+mypy>=1.7.0
