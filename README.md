@@ -323,3 +323,84 @@ This project demonstrates all required course concepts:
 
 ### ✅ Multi-Agent System (Required)
 - 
+
+## 🌐 Web Interface Deployment
+
+The AI Study Assistant also includes a fully functional web interface for easy access through your browser.
+
+### Running the Web Application
+
+1. **Start the Flask Server**
+
+```bash
+python app.py
+```
+
+2. **Access the Application**
+
+Open your browser and navigate to:
+```
+http://localhost:5000
+```
+
+### Web Features
+
+The web interface provides:
+
+- **🤖 AI Chat**: Interactive chat interface with conversation history
+- **📅 Study Plan Generator**: Create personalized study schedules
+- **❓ Quiz Generator**: Generate practice quizzes with custom difficulty
+- **💡 Concept Explainer**: Get explanations tailored to your level
+- **💻 Code Review**: Paste code and get instant feedback
+- **📚 Resource Finder**: Discover curated learning materials
+
+### Deployment Options
+
+#### Local Development
+```bash
+# Development mode with auto-reload
+python app.py
+```
+
+#### Production Deployment
+
+**Using Gunicorn (Recommended)**
+```bash
+pip install gunicorn
+gunicorn -w 4 -b 0.0.0.0:8000 app:app
+```
+
+**Using Docker**
+```dockerfile
+# Dockerfile
+FROM python:3.11-slim
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+COPY . .
+EXPOSE 5000
+CMD ["python", "app.py"]
+```
+
+```bash
+# Build and run
+docker build -t ai-study-assistant .
+docker run -p 5000:5000 --env-file .env ai-study-assistant
+```
+
+### Environment Variables
+
+Make sure to set your `GEMINI_API_KEY` in the `.env` file:
+
+```env
+GEMINI_API_KEY=your_api_key_here
+```
+
+### Web Architecture
+
+- **Backend**: Flask REST API with 7 endpoints
+- **Frontend**: Modern HTML5/CSS3/JavaScript
+- **Styling**: Custom dark theme with responsive design
+- **API Integration**: Fetch-based asynchronous requests
+
+---
