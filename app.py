@@ -24,7 +24,28 @@ chat_sessions = {}
 @app.route('/')
 def home():
     """Serve the main frontend page"""
-    return render_template('index.html')
+    return render_template('home.html')
+# Multi-page routes
+@app.route('/dashboard')
+def dashboard():
+    """Main application dashboard"""
+    return render_template('index.html')  # Keep existing app as dashboard
+
+@app.route('/about')
+def about():
+    """About page"""
+    return render_template('about.html')
+
+@app.route('/features')
+def features():
+    """Features page"""
+    return render_template('features.html')
+
+@app.route('/contact')
+def contact():
+    """Contact page"""
+    return render_template('contact.html')
+
 
 @app.route('/api/chat', methods=['POST'])
 def chat():
